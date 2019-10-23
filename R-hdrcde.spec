@@ -4,7 +4,7 @@
 #
 Name     : R-hdrcde
 Version  : 3.3
-Release  : 12
+Release  : 13
 URL      : https://cran.r-project.org/src/contrib/hdrcde_3.3.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/hdrcde_3.3.tar.gz
 Summary  : Highest Density Regions and Conditional Density Estimation
@@ -22,6 +22,7 @@ BuildRequires : R-ggplot2
 BuildRequires : R-ks
 BuildRequires : R-locfit
 BuildRequires : buildreq-R
+BuildRequires : util-linux
 
 %description
 # hdrcde: Highest Density Regions and Conditional Density Estimation
@@ -45,13 +46,13 @@ lib components for the R-hdrcde package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1545426018
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1571841824
 
 %install
-export SOURCE_DATE_EPOCH=1545426018
+export SOURCE_DATE_EPOCH=1571841824
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -80,13 +81,12 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library hdrcde|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc hdrcde || :
 
 
 %files
@@ -116,10 +116,7 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/hdrcde/help/paths.rds
 /usr/lib64/R/library/hdrcde/html/00Index.html
 /usr/lib64/R/library/hdrcde/html/R.css
-/usr/lib64/R/library/hdrcde/libs/symbols.rds
 
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/R/library/hdrcde/libs/hdrcde.so
-/usr/lib64/R/library/hdrcde/libs/hdrcde.so.avx2
-/usr/lib64/R/library/hdrcde/libs/hdrcde.so.avx512
