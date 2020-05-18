@@ -4,7 +4,7 @@
 #
 Name     : R-hdrcde
 Version  : 3.3
-Release  : 16
+Release  : 17
 URL      : https://cran.r-project.org/src/contrib/hdrcde_3.3.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/hdrcde_3.3.tar.gz
 Summary  : Highest Density Regions and Conditional Density Estimation
@@ -22,7 +22,6 @@ BuildRequires : R-ggplot2
 BuildRequires : R-ks
 BuildRequires : R-locfit
 BuildRequires : buildreq-R
-BuildRequires : util-linux
 
 %description
 # hdrcde: Highest Density Regions and Conditional Density Estimation
@@ -41,21 +40,22 @@ lib components for the R-hdrcde package.
 
 %prep
 %setup -q -c -n hdrcde
+cd %{_builddir}/hdrcde
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571841824
+export SOURCE_DATE_EPOCH=1589760364
 
 %install
-export SOURCE_DATE_EPOCH=1571841824
+export SOURCE_DATE_EPOCH=1589760364
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
