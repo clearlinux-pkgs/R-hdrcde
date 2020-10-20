@@ -4,7 +4,7 @@
 #
 Name     : R-hdrcde
 Version  : 3.3
-Release  : 18
+Release  : 19
 URL      : https://cran.r-project.org/src/contrib/hdrcde_3.3.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/hdrcde_3.3.tar.gz
 Summary  : Highest Density Regions and Conditional Density Estimation
